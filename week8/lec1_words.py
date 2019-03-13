@@ -1,34 +1,39 @@
-def mostCommonWord(L):
-    commonWord = ""
-    numTimes = 0
+# O(N**2)
+def mostCommonWord(L): # L contains N items
+    commonWord = ""  # 1
+    numTimes = 0  # 1
     
-    for word in L:
-        cnt = L.count(word)
-        if cnt > numTimes:
-            numTimes = cnt
-            commonWord = word
+    for word in L: # Runs N times
+        cnt = L.count(word) # N operations
+        if cnt > numTimes:  # 1
+            numTimes = cnt # 1
+            commonWord = word # 1
     
-    return (commonWord, numTimes)
+    return (commonWord, numTimes) # 1
 
+# O(N)
 def mostCommonWordFaster(L):
     
-    wordDictionary = dict()
-    for word in L:  #O(N)
-        if word in wordDictionary:
-            wordDictionary[word] += 1
+    wordDictionary = dict() # O(1)
+    
+    # This whole loop is O(N)
+    for word in L: # O(N)
+        if word in wordDictionary: # O(1)
+            wordDictionary[word] += 1 # O(1)
         else:
-            wordDictionary[word] = 1
-            
-    commonWord = ""
-    numTimes = 0
+            wordDictionary[word] = 1 # O(1)
+             
+    commonWord = "" # O(1)
+    numTimes = 0 # O(1)
     
-    for word in wordDictionary: #O(N)
-        cnt = wordDictionary[word]
-        if cnt > numTimes:
-            numTimes = cnt
-            commonWord = word
+    # Whole loop is O(N)
+    for word in wordDictionary: # O(N)
+        cnt = wordDictionary[word] # O(1)
+        if cnt > numTimes: # O(1)
+            numTimes = cnt # O(1)
+            commonWord = word # O(1)
     
-    return (commonWord, numTimes)
+    return (commonWord, numTimes) # O(1)
 text = """Either the well was very deep, or she fell very slowly, for she had
 plenty of time as she went down to look about her and to wonder what was
 going to happen next. First, she tried to look down and make out what
