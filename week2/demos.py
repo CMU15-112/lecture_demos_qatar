@@ -28,6 +28,46 @@ def circlesIntersect(x1, y1, r1, x2, y2, r2):
         return False
     else:
         return True
+
+def testCirclesIntersect():
+    print("Testing circlesIntersect...", end="")
+    assert( circlesIntersect(0,0,1,5,5,3) == False )
+    assert( circlesIntersect(0,0,3,2,2,4) == True )
+    assert( circlesIntersect(0,0,5,0,0,5) == True )
+    assert( circlesIntersect(0,0,3,6,0,3) == True )
+    assert( circlesIntersect(0,0,2,0,0,4) == True )
+    print("done.")
+
+def testGetOnesDigit():
+    print("Testing getOnesDigit...", end="")
+    assert( getOnesDigit(123) == 3)
+    assert( getOnesDigit(4237) == 7)
+    assert( getOnesDigit(0) == 0)
+    assert( getOnesDigit(2) == 2)
+    assert( getOnesDigit(2.3) == 2)
+    assert( getOnesDigit(-123) == 3)
+    #getOnesDigit("Hi there bob")
+    print("done.")
+
+def getOnesDigit(n):
+    # I should check that n is an int or a float...
+    a = int(n)
+    b = abs(a)
+    return b % 10
     
-print(circlesIntersect(0,0,1,5,5,3))
+def getHundredsDigit(n):
+    a = int(n)
+    b = abs(a)
+    c = b % 1000
+    return c // 100
+
+def getHundredsDigit(n):
+    a = int(n)
+    b = abs(a)
+    c = b // 100
+    return c % 10
+    
+testDistanceAgain()
+testCirclesIntersect()
+testGetOnesDigit()
     
