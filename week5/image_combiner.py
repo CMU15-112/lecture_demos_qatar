@@ -13,11 +13,6 @@ for i in range(width):
         souqColors = ImageWriter.getColor(souq, i, j)
         pearlColors = ImageWriter.getColor(pearl, i, j)
         
-        if souqColors == None:
-            print("souq:",i,j)
-        if pearlColors == None:
-            print("pearl:",i,j)
-        
         newColors = [0,0,0]
         for k in range(3):
             newColors[k] = (souqColors[k]+pearlColors[k])//2
