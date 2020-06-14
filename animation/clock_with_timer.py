@@ -26,7 +26,11 @@ def getMinuteAngle(minute):
         angle += 2*math.pi
     return angle
     
-
+# take a canvas, why?
+# cx, cy : center of clock
+# r: radius
+# hour
+# minute
 def drawClock(canvas, cx, cy, r, hour, minute):
     canvas.create_oval(cx-r, cy-r, cx+r, cy+r, fill="pink", outline="red", width=3)
     
@@ -54,21 +58,22 @@ def drawClock(canvas, cx, cy, r, hour, minute):
         
 """ we don't need a draw function for animations,
     instead, use redrawAll
-"""
+
 def draw(canvas, width, height):
     # set the time that you want to display
     hour = 12
     minutes = 8
     drawClock(canvas, width//2, height//2, 100, hour, minutes)
-
+"""
 
 # animation-part
 # model (app)
+# just create all the model (variables, objects)
 def appStarted(app):
     # the number of milliseconds between calls to timerFired
     # Let's make out clock very fast, each second will increase time by one minute
     # timer will fire each 1000 milliseconds = 1 second
-    app.timerDelay = 1000
+    app.timerDelay = 100
     
     # initial time
     # we keep the "data" of our animation in the object app
@@ -78,9 +83,14 @@ def appStarted(app):
 
 # This function will automatically be called each app.timerDelay milliseconds
 # In this example, once every second
+# just update data,
+
+def keyPressed(app, event):
+    pass
+
 def timerFired(app):
-    # let's update our "model"
-    # in this example, the time
+    # just changing hour and minutes
+    print("timer fired")
     app.minutes += 1
     if app.minutes == 60:
         app.minutes = 0
@@ -90,13 +100,21 @@ def timerFired(app):
 
 # view
 # this is the function that draws (and keeps updating) the canvas
-def redrawAll(app, canvas):
+
+
+#  Our model is
+# hour
+# minutes
+# app.hour  (how we make "hour" to be part of the model)
+# app.minutes    .... minutes
+def redrawAll(app, canvas):   # this is view
     # we already have our function drawClock
     # get the width and height of canvas
     width = app.width
     height = app.height
     clockWidth = 100
-    drawClock(canvas, width//2, height//2, clockWidth, app.hour, app.minutes)
+    drawClock(canvas, width//2, height//2, clockWidth, app.hour, app.minutes)  # drawClock is a function, drawing in the canvas 
+    #drawClock(canvas, width//2, height//2, clockWidth, app.hour, app.minutes)
     
     
 

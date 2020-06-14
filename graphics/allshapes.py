@@ -18,9 +18,10 @@ def drawShapesWithCoolColors(canvas):
     canvas.create_oval(75, 75, 125, 125, fill="#8A1538", width=0)
 
 def drawSomeText(canvas, x, y):
-    canvas.create_text(x, y, text="Hi there!", fill="blue")
-    canvas.create_text(x, y, text="More text", anchor="nw", font="Helvetica 26 underline italic")
-    canvas.create_text(x, y, text="Text Again", anchor="se")
+    #canvas.create_text(x, y, text="Hi there!", fill="blue")
+    #canvas.create_text(x, y, text="More text", anchor="nw", font="Helvetica 26 underline italic")
+    #canvas.create_text(x, y, text="Text Again", anchor="se")
+    canvas.create_text(x, y, text=u'\u265F', anchor="nw", font="Helvetica 26")
 
 def drawRectangles(canvas, w, h):
     fontSize = max(w,h)//16
