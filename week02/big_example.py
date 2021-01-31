@@ -24,7 +24,10 @@ def getOnesDigit(n):
 
 # Get the hundreds digit from a number.  That number could be an int or a float.
 def getHundredsDigit(n):
-    return 42
+    n = abs(n)
+    n = int(n)
+    n = n // 100
+    return getOnesDigit(n)
 
 #################################################
 # Test Functions
@@ -54,6 +57,18 @@ def testGetOnesDigit():
     assert( getOnesDigit(2.3) == 2)
     assert( getOnesDigit(-123) == 3)
     print("done.")
+    
+def testGetHundredsDigit():
+    print("Testing getHundredsDigit...", end="")
+    assert( getHundredsDigit(123) == 1 )
+    assert( getHundredsDigit(4237) == 2 )
+    assert( getHundredsDigit(23) == 0 )
+    assert( getHundredsDigit(-324732) == 7 )
+    assert( getHundredsDigit(91223.87) == 2 )
+    assert( getHundredsDigit(0) == 0 )
+    assert( getHundredsDigit(-91223.87) == 2 )
+    assert( getHundredsDigit(345+1200) == 5 )
+    print("done.")
 
 #################################################
 # testAll and main
@@ -64,6 +79,7 @@ def testAll():
     testDistance()
     testCirclesIntersect()
     testGetOnesDigit()
+    testGetHundredsDigit()
 
 def main():
     testAll()
