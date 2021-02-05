@@ -71,3 +71,9 @@ weirdList = [1, 2, "Hi", True, 5.6, None]
 print(weirdList)
 weirdList[1] = False
 print(weirdList)
+
+print("----")
+
+L = [10, 65, 3, 90, 104]
+for i in L:
+    print(i)
