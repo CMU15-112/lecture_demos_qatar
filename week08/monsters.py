@@ -29,7 +29,17 @@ class Deflector(Monster):
         else:
             super().defend(dmg)
     
-    
+class Knight(Monster):
+    def __init__(self, name, hitPoints, attackPoints):
+        super().__init__("Knight "+ name, hitPoints, attackPoints)
+        
+    def defend(self, attackPoints):
+        num = random.randint(1,100)
+        if num <= 25:
+            print(f"{self.name} defends against the attack!")
+        else:
+            super().defend(attackPoints)
+
 def MonsterBattle(monster1, monster2):
     print(f"{monster1.name} is fighting {monster2.name}")
     print("----------------------------------------------")
@@ -47,6 +57,6 @@ def MonsterBattle(monster1, monster2):
     if monster2.isDead():
         print(f"{monster2.name} is dead!")
         
-m1 = Monster("Bob", 20, 5)
+m1 = Knight("Bob", 20, 5)
 m2 = Deflector("Fred", 30, 3)
 MonsterBattle(m1, m2)
