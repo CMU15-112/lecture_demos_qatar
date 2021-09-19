@@ -6,8 +6,7 @@ def ct(a):
     b[0] = 64
     a.append("wow")
     c[3] = 2 * c[3]
-    #b = b[:2] + ["hi"] + b[2:]
-    b = b[::]
+    b = b[:2] + ["hi"] + b[2:]
     b[1] = "bob"
     c.pop(1)
     a[-2] = 112
