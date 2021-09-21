@@ -17,5 +17,3 @@ for i in range(width):
         ImageWriter.setColor(mypic,i,j,newColor)
     
 ImageWriter.updatePicture(mypic)
-        
-
