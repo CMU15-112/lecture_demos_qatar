@@ -1,6 +1,6 @@
 # With extend
 myList = ['a','b','c','d','e','f']
-myList.extend(['x','y', 'z'])
+myList.extend( ['x','y', 'z'] )
 print(myList)
 
 # With += operator

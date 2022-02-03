@@ -11,3 +11,6 @@ print("len =", len(myNumberList))
 print("min =", min(myNumberList))
 print("max =", max(myNumberList))
 print("sum =", sum(myNumberList))
+
+
+
