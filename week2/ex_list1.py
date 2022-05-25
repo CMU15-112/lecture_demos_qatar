@@ -18,3 +18,7 @@ print(myList[-2])
 myList = ['a','b','c','d','e','f']
 for i in range(len(myList)):
     print("++ ", myList[i])
+    
+    
+for item in myList:
+    print(item)
