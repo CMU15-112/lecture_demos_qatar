@@ -1,0 +1,1 @@
+def sumTo(numList, n)
