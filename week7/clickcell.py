@@ -18,7 +18,7 @@ def appStarted(app):
             randomColor = app.colors[0]
             rowColors.append(randomColor)  # choose a random color
         app.cellColors.append(rowColors)
-    app.gameState = 'playing'
+    app.gameState = 'welcome'
             
 def selectedCell(app, x, y):
     # It is basically the same code that draws, but without drawing
@@ -49,7 +49,7 @@ def allCellsSameColor(app):
     return (nred == 0 and ngreen == 0) or \
        (nred == 0 and nblue ==0) or \
        (ngreen == 0 and nblue ==0 )
-        
+    
 def mousePressed(app, event):
     if app.gameState == 'playing':
         selected = selectedCell(app, event.x, event.y)
@@ -61,13 +61,18 @@ def mousePressed(app, event):
         if allCellsSameColor(app):
             app.gameState = 'win'
             
-
+def keyPressed(app, event):
+    if app.gameState == 'welcome':
+        if event.key == 's':
+            app.gameState = 'playing'
+    
 def timerFired(app):
-    app.counter += 1 
-    if app.counter % 20 == 0:  # every 20 counter increments (1 second)
-        app.countDown -= 1
-        if app.countDown == 0:  # game over
-            app.gameState = "gameOver"
+    app.counter += 1
+    if app.gameState == 'playing':
+        if app.counter % 20 == 0:  # every 20 counter increments (1 second)
+            app.countDown -= 1
+            if app.countDown == 0:  # game over
+                app.gameState = "gameOver"
 
 def drawGrid(canvas, width, height, cellColors, nrows, ncols):
     cellSize = (width)//ncols, (height)//nrows  
@@ -89,6 +94,21 @@ def redrawAll(app, canvas):
     if app.gameState == "gameOver":
         canvas.create_rectangle(0,0,app.width, app.height, fill="blue")
         canvas.create_text(app.width//2, app.height//2, text="Game Over", fill="white", font="Arial 60 bold")
+    elif app.gameState == "welcome":
+        canvas.create_rectangle(0,0,app.width, app.height, fill="green")
+        welcomeText = """Welcome to ClickyGame
+
+Click on the colored cells to remove them
+
+You win when all remaining
+colored cells have the same color
+
+You have 10 seconds
+
+Press s to start"""
+        canvas.create_text(app.width//2, app.height//2, text=welcomeText,
+                           fill="white", font=f"Arial {20} bold")
+
     elif app.gameState == "win":
         canvas.create_rectangle(0,0,app.width, app.height, fill="blue")
         canvas.create_text(app.width//2, app.height//2, text="You Won", fill="white", font="Arial 60 bold")
