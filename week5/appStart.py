@@ -11,7 +11,7 @@ def onAppStart(app):
     app.dotY = random.randint(app.dotR, app.height - app.dotR)
     app.gameState = "play"
 
-    #app.stepsPerSecond = 10
+    #app.stepsPerSecond = 10  this variable controls the number of calls to onStep
     print("Hello from appStart")
 
 def onMousePress(app, x, y):
@@ -34,11 +34,11 @@ def onStep(app):
 def redrawAll(app):
     if app.gameState == "game over":
         drawRect(0,0,app.width, app.height, fill="red")
-        drawLabel("Game Over", app.width//2, app.height//2, fill="white", size=60) 
-    if app.gameState == "play":  
+        drawLabel("Game Over", app.width//2, app.height//2, fill="white", size=60)
+    if app.gameState == "play":
         drawLabel(f'{app.counter} clicks on the target', app.width//2, 100, size=60 )
 
-        drawLabel(f"Time Remaining: {app.countDown}", app.width, app.height, 
+        drawLabel(f"Time Remaining: {app.countDown}", app.width, app.height,
                 align='right-bottom', size=60)
         drawCircle(app.dotX, app.dotY, app.dotR, fill=app.dotColor)
 
