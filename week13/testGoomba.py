@@ -31,7 +31,7 @@ class Sprite:
 def onKeyPress(app, key):
   if (key == 'p'):
       if ( app.paused ):
-          app.pausedLabel = 'Playing! (prss p to pause)'
+          app.pausedLabel = 'Playing! (press p to pause)'
           app.paused = False
           music.play(loop=True)
       else:
