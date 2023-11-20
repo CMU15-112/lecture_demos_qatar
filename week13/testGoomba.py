@@ -4,6 +4,9 @@ from cmu_graphics.shape_logic import loadImageFromStringReference
 
 import random
 import time
+import pathlib
+cntPath = pathlib.Path(__file__).parent.resolve()
+music = Sound(f'file://{cntPath}/Drum1.mp3')
 
 class Sprite:
     def __init__(self, images, x, y, cached = False):
@@ -24,6 +27,17 @@ class Sprite:
         return self.images[self.curImg]
     def move(self):
         self.x += self.dx
+
+def onKeyPress(app, key):
+  if (key == 'p'):
+      if ( app.paused ):
+          app.pausedLabel = 'Playing! (prss p to pause)'
+          app.paused = False
+          music.play(loop=True)
+      else:
+          app.pausedLabel = 'Music Paused (press p to play)...'
+          app.paused = True
+          music.pause()
 
 def onAppStart(app):
     USE_CACHED = True  # if true, uses preload images (see above)
@@ -54,6 +68,8 @@ def onAppStart(app):
     app.dx = 2
     app.timer = 0
     app.startTime = time.time()
+    app.paused = False
+    app.pausedLabel = 'Music Paused (press p to play)...'
 
 
 def onMousePress(app, mouseX, mouseY):
@@ -93,5 +109,7 @@ def redrawAll(app):
 
     diffTime = app.timer - realTime
     drawLabel(f'Diff: {diffTime:.2f}', 3*app.width//4,  60, size = 50)
+
+    drawLabel(app.pausedLabel, app.width//2, 120, size = 50)
 
 runApp(width= 1200, height = 800)
