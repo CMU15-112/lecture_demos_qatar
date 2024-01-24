@@ -1,4 +1,4 @@
-%finding the count of the element that meets that meets a given criteria (is multiple of 4)
+%finding the count of the element that meets a given criteria (is multiple of 4)
 
 
 def meetsCriteria(element):
