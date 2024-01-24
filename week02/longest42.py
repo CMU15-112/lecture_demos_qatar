@@ -24,6 +24,8 @@ def testLongest42Run():
     assert(longest42run(15112) == 0)
     assert(longest42run(142424242424200) == 6)
     assert(longest42run(142424242004242) == 4)
+    assert(longest42run(142424242004242) == 4)
+
     
     print("PASSED !!")
     
