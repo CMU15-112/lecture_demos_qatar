@@ -22,7 +22,7 @@ def loadBook(filename):
         theText = theText.replace(badChar," ")
     return theText.split()
 
-allWordsList = loadBook("../alice.txt")
+allWordsList = loadBook("alice.txt")
 print(f"Loaded text with {len(allWordsList)} words")
 
 start = time.time()
