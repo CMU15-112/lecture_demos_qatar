@@ -11,14 +11,16 @@ def isPrime(n):
         
 
 def betterIsPrime(n):
-    
-    if n < 2:
+    if (n < 2):
         return False
-    
-    for i in range(n**0.5, n):
-        if n%i ==0:
+    if (n == 2):
+        return True
+    if (n % 2 == 0):
+        return False
+    maxFactor = round(n**0.5)
+    for factor in range(3,maxFactor+1,2): # we start at 3 and step by 2 because we only need the odds
+        if (n % factor == 0):
             return False
-        
     return True
 
 def nthPrime(n):   
