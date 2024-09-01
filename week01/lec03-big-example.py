@@ -38,8 +38,17 @@ def testDistanceBad():
     
 def testDistance():
     print("Testing distance...", end="")
-    assert distance(0,0,3,4) == 5
-    assert math.isclose(distance(7,4,25,7), 333 ** 0.5)
+    assert( math.isclose(distance(0,0,3,4),5) )
+    assert( math.isclose(distance(7,4,25,7),333**0.5) )
+    print("done.")
+
+def testCirclesIntersect():
+    print("Testing circlesIntersect...", end="")
+    assert( circlesIntersect(0,0,1,5,5,3) == False )
+    assert( circlesIntersect(0,0,3,2,2,4) == True )
+    assert( circlesIntersect(0,0,5,0,0,5) == True )
+    assert( circlesIntersect(0,0,3,6,0,3) == True )
+    assert( circlesIntersect(0,0,2,0,0,4) == True )
     print("done.")
 
 def testGetOnesDigit():
@@ -51,14 +60,29 @@ def testGetOnesDigit():
     assert( getOnesDigit(2.3) == 2)
     assert( getOnesDigit(-123) == 3)
     print("done.")
+    
+def testGetHundredsDigit():
+    print("Testing getHundredsDigit...", end="")
+    assert( getHundredsDigit(123) == 1 )
+    assert( getHundredsDigit(4237) == 2 )
+    assert( getHundredsDigit(23) == 0 )
+    assert( getHundredsDigit(-324732) == 7 )
+    assert( getHundredsDigit(91223.87) == 2 )
+    assert( getHundredsDigit(0) == 0 )
+    assert( getHundredsDigit(-91223.87) == 2 )
+    assert( getHundredsDigit(345+1200) == 5 )
+    print("done.")
 
 #################################################
 # testAll and main
 #################################################
 
 def testAll():
+    # comment out the tests you do not wish to run!
     testDistance()
+    testCirclesIntersect()
     testGetOnesDigit()
+    testGetHundredsDigit()
 
 def main():
     testAll()
