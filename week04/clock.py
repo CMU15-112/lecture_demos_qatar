@@ -71,7 +71,8 @@ def drawClockFace(app):
 
 def onStep(app):
     app.step += 1
-    if app.step % (45 * 60) == 0:
+    # By default, cmu_graphics does 30 steps per second
+    if app.step % 30 == 0:
         app.min += 1
         if app.min == 60:
             app.min = 0
