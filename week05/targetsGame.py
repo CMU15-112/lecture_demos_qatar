@@ -8,7 +8,7 @@ def moveTarget(app):
 def distance(x1, y1, x2, y2):
     return ((x2-x1)**2 + (y2-y1)**2)**0.5
 
-def onAppStart(app):
+def reset(app):
     app.stepCount = 0
     app.gameOver = False
     app.points = 0
@@ -19,6 +19,9 @@ def onAppStart(app):
     app.cx = app.width//2
     app.cy = app.height//2
     moveTarget(app)
+
+def onAppStart(app):
+    reset(app)
       
 def onMousePress(app, x, y):
     if app.gameOver == False:
@@ -28,6 +31,10 @@ def onMousePress(app, x, y):
             app.maxRadius -= 5
             app.minRadius -= 5
         
+def onKeyPress(app, key):
+    if app.gameOver == True and key == 'r':
+        reset(app)
+
 def onStep(app):
     if app.gameOver == False:
         app.stepCount += 1
@@ -37,13 +44,14 @@ def onStep(app):
             app.radiusDir = 1
 
         app.radius += app.radiusDir
-        if app.radius <= 0:
+        if app.minRadius <= 0:
             app.gameOver = True
 
 def redrawAll(app):
     
     if app.gameOver:
         drawLabel("Game Over!", app.width//2, app.height//2, size=50)
+        drawLabel("Press (r) to reset", app.width//2, app.height//2 + app.height//5, size=30)
     else:
         for i in range(5):
             if i%2 == 0:
