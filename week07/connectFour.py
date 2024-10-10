@@ -29,11 +29,49 @@ def containsFourInRow(tokenList):
             return subSlice[0]
     return None
 
+def getDiag(app, startR, startC, direction):
+    tmp = []
+    c = startC
+    r = startR
+    while c < app.numCols and r >= 0 and r < app.numRows:
+        tmp.append(app.board[r][c])
+        c += 1
+        r += direction
+    return tmp
+
 def isGameOver(app):
     for row in app.board:
         winner = containsFourInRow(row)
         if winner:
             return winner
+        
+    for c in range(app.numCols):
+        tmp = []
+        for r in range(app.numRows):
+            tmp.append(app.board[r][c])
+        winner = containsFourInRow(tmp)
+        if winner:
+            return winner
+        
+    for r in range(app.numRows):
+        for direction in [-1, 1]:
+            tmp = getDiag(app, r, 0, direction)
+            winner = containsFourInRow(tmp)
+            if winner:
+                return winner
+    
+    for c in range(1, app.numCols):
+        tmp = getDiag(app, app.numRows - 1, c, -1)
+        winner = containsFourInRow(tmp)
+        if winner:
+            return winner
+        
+    for c in range(1, app.numCols):
+        tmp = getDiag(app, 0, c, 1)
+        winner = containsFourInRow(tmp)
+        if winner:
+            return winner
+                
     return None
 
 def reset(app):
@@ -74,7 +112,8 @@ def onMousePress(app, x, y):
 
 # Controller
 def onKeyPress(app, key):
-    pass
+    if key in "rR":
+        reset(app)
  
 # View
 def redrawAll(app):
