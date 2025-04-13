@@ -1,5 +1,5 @@
 # Incomplete
-# Try to complete it by yourself
+# Try to complete it by yourself~
 
 class Vehicle:
     def __init__(self, name, cap):
