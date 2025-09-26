@@ -4,7 +4,7 @@ import math
 
 def drawClockFace(app, cx, cy, radius, color='yellow'):
     drawCircle(cx,cy,radius, fill=color)
-    
+
 def drawNumbers(app, cx, cy, radius):
     smallRadius = 0.85*radius
     num = 3
@@ -17,17 +17,18 @@ def drawNumbers(app, cx, cy, radius):
         label = str(num)
         drawLabel(label, hourX, hourY,bold=True,size=fontSize)
         num = num%12 + 1
-    
+
 def drawWallClock(app):
     radius = app.width//4
     cx, cy = app.width//2, app.height//2
-    #drawClockFace(app, cx, cy, radius)
+    drawClockFace(app, cx, cy, radius)
     drawNumbers(app, cx, cy, radius)
-    #drawHands(app, cx, cy, radius)
-   
-    
+    # Challenge:
+    # drawHands(app, cx, cy, radius)
+
+
 def redrawAll(app):
     drawWallClock(app)
-    
-    
+
+
 runApp(600, 600)
