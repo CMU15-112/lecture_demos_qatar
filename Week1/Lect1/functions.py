@@ -23,4 +23,4 @@ x = 1
 y = double(x)
 print("outside the function")
 print(x)
-print(z)
+#print(z)
