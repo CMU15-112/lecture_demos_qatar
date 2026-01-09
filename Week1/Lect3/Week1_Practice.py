@@ -10,16 +10,37 @@ import math
 # a returns True if n is a positive integer,
 # multiple of 5, or False otherwise.
 def isPositiveMultipleOfFiveInt(n):
+    
+    #reject not int
+    if type(n) != int: #another way: not (type(n) == int)
         return False
-
+    
+    # reject not positive
+    if n < 0 :
+        return False
+    
+    ### another way
+    # if type(n) != int or n <0:
+       # return False
+    
+    # reject not multipple of 5
+    if n%5 != 0:
+        return False
+    
+    return True
 
     
 #Write a function getTrianglePerimeter(x1, y1, x2, y2, x3, y3) 
 #which calculates and returns the perimeter of a triangle given its coordinates. 
 #Hint: It might be useful to use a helper function to find side lengths.
 def getTrianglePerimeter(x1, y1, x2, y2, x3, y3):
-    return 42
+    la = sideL(x1, y1, x2, y2)
+    lb = sideL(x2, y2, x3, y3)
+    lc = sideL(x1, y1, x3, y3)
+    return la+lb+lc
 
+def sideL(x1, y1, x2, y2):
+    return ((x2-x1)**2+(y2-y1)**2)**0.5
 
 # We will say that a value n is a small 42ish (coined term) if it is an
   #integer number with precisely four digits and has at least one pair of
@@ -32,7 +53,23 @@ def getTrianglePerimeter(x1, y1, x2, y2, x3, y3):
     #which may or may not be an integer, and returns True if n is a small42ish number, 
     #and False otherwise. Do not crash if n is not an integer! Do not use strings or loops here. 
 def isSmall42ish(n):
-    return False
+    
+    #reject not int
+    if not isinstance(n, int):
+        return False
+    
+    #reject not 4 digits
+    n = abs(n)
+    if n< 1000 or n > 9999:
+        return False
+        
+    
+    # reject if no two consective digits = 42
+    d10 = n%100
+    d32 = n//100
+    d21 = (n//10)%100
+    
+    return (d10==42 or d32==42 or d21 == 42)
 
 
 #################################################
@@ -42,9 +79,11 @@ def isSmall42ish(n):
 def testIsPositiveMultipleOfFiveInt():
     print("Testing isPositiveMultipleOfFiveInt...", end="")
     assert(isPositiveMultipleOfFiveInt(5)) # True case
+    assert(isPositiveMultipleOfFiveInt(0) == True) # True case
     assert(isPositiveMultipleOfFiveInt(-5) == False)
     assert(isPositiveMultipleOfFiveInt("five") == False)
     assert(isPositiveMultipleOfFiveInt(5.0) == False)
+    assert(isPositiveMultipleOfFiveInt(24) == False)
     print("Passed !")
 
 def testGetTrianglePerimeter():
@@ -58,7 +97,16 @@ def testGetTrianglePerimeter():
     
 
 def testIsSmall42ish():
-    print("Write your own test cases")
+    assert(isSmall42ish(1234)==False)
+    assert(isSmall42ish(1425) == True)
+    assert(isSmall42ish(4242))
+    assert(isSmall42ish("Hello")==False)
+    assert(isSmall42ish(4.2)==False)
+    assert(isSmall42ish(-4242))
+    assert(isSmall42ish(1)==False)
+    assert(isSmall42ish(12345)==False)
+
+    print("Passed :)")
 
 
 #################################################
@@ -69,7 +117,7 @@ def testAll():
     # comment out the tests you do not wish to run!
     testIsPositiveMultipleOfFiveInt()
     testGetTrianglePerimeter()
-    #testIsSmall42ish()
+    testIsSmall42ish()
 
 def main():
     testAll()
