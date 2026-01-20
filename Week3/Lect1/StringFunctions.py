@@ -61,4 +61,34 @@ print(s)
 print()
 
 
+#### More Functions
+
+s= "Hello, World!"
+
+# count
+print(s.count("o"))
+print(s.count("World"))
+print(s.count("O"))
+
+print()
+
+# find
+print(s.find("o"))
+print(s.find("World"))
+print(s.find("O"))
+
+
+# index
+print(s.index("o"))
+print(s.index("World"))
+#print(s.index("O"))
+
+# split
+print(s.split(","))
+for w in s.split(","):
+    print(w)
+    
+print(s.split())
+
+print(s.split("o"))
 
