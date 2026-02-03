@@ -13,12 +13,22 @@ def destructiveListInList(a, b, n):
     # case 1-  n = 0:
     if n == 0:
         a[:] = b + a
-    
-   pass
+        
+    # Case 2 - n = len(a)
+    elif n == len(a):
+        a.extend(b)
+        
+    else:
+        a[n:n] = b
+        #a[:] = a[:n]+b+a[n:]
         
 
 a= [1,3,5]
 b= [4,2]
 print(a)
 destructiveListInList(a,b, 1)
-print(a)
+#destructiveListInList(a,b, 0)
+#destructiveListInList(a,b, 3)
+
+#function doesn't return but a changes
+print(a) # a changes 

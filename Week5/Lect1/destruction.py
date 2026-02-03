@@ -69,3 +69,4 @@ L3[2:4]= [5,6] #destructive
 print(id(L3))
 
 print(id(L3))
+
