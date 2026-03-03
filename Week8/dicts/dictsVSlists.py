@@ -24,15 +24,25 @@ print("MergedLists:", gradesFreq_mapped)
 print()
 
 
+'''
 
+'''
 def calculate_grade_distribution_with_dict(grades):
     grade_distribution = dict()
     for grade in grades:
-        if grade in grade_distribution:
-            grade_distribution[grade] += 1
+        if grade in grade_distribution: 
+            #grade_distribution[grade] = grade_distribution[grade]+1
+            grade_distribution[grade] += 1   
         else:
-            grade_distribution[grade] = 1
+            grade_distribution[grade] = 1 
     return grade_distribution
+
+'''
+More concise approach
+'''
+def calculate_grade_distribution_with_dict_v2(grades):
+    pass
+
 
 # Example usage:
 grades = [85, 90, 75, 85, 95, 90, 80, 85, 90]

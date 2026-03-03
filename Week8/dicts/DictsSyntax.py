@@ -19,10 +19,11 @@ print(d)
 ### Adding/Modifying existing element
 print("\n Adding/Modifying existing element: ===========")
 d["E"] = 5
-print(d)
+print(d) # preserves insertion order
 
 d["D"] = 10
 print(d)
+
 
 ### Properties: keys follow set properties (unique, immutable)
 print("\n Properties: ===========")
@@ -36,7 +37,6 @@ L =[1,2]
 ### iterating over dictionaries
 print("\n Iterating : ===========")
 
-print("... over keys")
 
     
 print("... over values:")
@@ -56,5 +56,6 @@ print("\n Accessing an element: ===========")
 print("\n Removing an Element: ===========")
 
 
-
+### Adding elements from another iterable (list of tuples or dict)
+print("\n Adding Elements from another iterable: ===========")
 
