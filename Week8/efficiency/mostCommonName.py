@@ -1,12 +1,40 @@
-def mostCommonName_n2(L):
-    pass
+'''
+Write the function mostCommonName, that takes a list of names
+(such as ["Jane", "Aaron", "Cindy", "Aaron"],
+and returns the most common name in this list (in this case, "Aaron").
 
+If there is more than one such name, return a set of the most common names.
+So mostCommonName(["Jane", "Aaron", "Jane", "Cindy", "Aaron"]) returns the set
+{"Aaron", "Jane"}. If the set is empty, return None.
+
+Also, treat names case sensitively, so "Jane" and "JANE" are different names.
+'''
+def mostCommonName_n2(L):
+    if len(L) == 0:
+        return None
+    
+    maxCount = 0
+    s = set()
+    for e in L:   
+        c = L.count(e)
+        if c == maxCount:
+            s.add(e)
+        elif c > maxCount:
+            s = {e}
+            maxCount = c
+    
+    if len(s)== 1:
+        return s.pop()
+    
+    return s
 
 def mostCommonName_n(L):
     pass
 
 
+
 def mostCommonName_nlogn(L):
+    #Assume L = [D, C, A, B, D, B, D]
     pass
 
 

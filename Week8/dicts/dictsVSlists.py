@@ -30,18 +30,21 @@ print()
 def calculate_grade_distribution_with_dict(grades):
     grade_distribution = dict()
     for grade in grades:
-        if grade in grade_distribution: 
+        if grade in grade_distribution: #keys
             #grade_distribution[grade] = grade_distribution[grade]+1
             grade_distribution[grade] += 1   
         else:
-            grade_distribution[grade] = 1 
+            grade_distribution[grade] = 1 # new entry
     return grade_distribution
 
 '''
 More concise approach
 '''
 def calculate_grade_distribution_with_dict_v2(grades):
-    pass
+    grade_distribution = dict()
+    for grade in grades:
+        grade_distribution[grade] = grade_distribution.get(grade, 0)+1
+    return grade_distribution
 
 
 # Example usage:
