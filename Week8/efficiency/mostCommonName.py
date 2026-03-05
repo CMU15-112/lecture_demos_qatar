@@ -15,8 +15,8 @@ def mostCommonName_n2(L):
     
     maxCount = 0
     s = set()
-    for e in L:   
-        c = L.count(e)
+    for e in L:  # N 
+        c = L.count(e) # N
         if c == maxCount:
             s.add(e)
         elif c > maxCount:
@@ -29,19 +29,77 @@ def mostCommonName_n2(L):
     return s
 
 def mostCommonName_n(L):
-    pass
-
-
+    if len(L) == 0:
+        return None
+    
+    d = {}
+    maxCount = 0
+    s = set()
+    #L = [D, C, A, B, D, B, D]
+    #d = {D:3, C:1, A:1, B:2 }
+    #s = {D}
+    for e in L:  # N
+        d[e] = d.get(e, 0)+1 # O(1)
+        c = d[e]
+        if c == maxCount:
+            s.add(e)
+        elif c > maxCount:
+            s = {e}
+            maxCount = c
+    
+    if len(s)== 1:
+        return s.pop()
+    
+    return s
+    
 
 def mostCommonName_nlogn(L):
-    #Assume L = [D, C, A, B, D, B, D]
-    pass
+    #Assume L = ['D', 'C', 'A', 'B', 'D', 'B', 'D']
+    if len(L) == 0:
+        return None
+    
+    L.sort() #
+    # sl = ['A','B','B','C','D','D','D']
+    #print(L)
+    
+    currCount = 1
+    maxCount = 0
+    maxElements = set()
+    
+    # for i in range(1, len(L)): #len(L)-1
+        # L[i] == L[i-1]
+        
+    for i in range(len(L)-1): # len(L)-2
+        if L[i] == L[i+1]:
+            currCount+=1
+        else: # new item
+            e = L[i]
+            if currCount == maxCount:
+                maxElements.add(e)
+            elif currCount > maxCount:
+                maxElements= {e}
+                maxCount = currCount
+            currCount= 1
+    
+    e = L[-1]
+    if currCount == maxCount:
+        maxElements.add(e)
+    elif currCount > maxCount:
+        maxElements= {e}
+        maxCount = currCount
+    
+    if len(maxElements)== 1:
+        return maxElements.pop()
+    
+    print(maxElements)
+    return maxElements
 
 
 
 def testN2():
     print("Testing mostCommonName_n2()...", end="") 
-    assert(mostCommonName_n2(["Jane", "Aaron", "Cindy", "Aaron"]) == "Aaron") 
+    assert(mostCommonName_n2(["Jane", "Aaron", "Cindy", "Aaron"]) == "Aaron")
+    # ...["Aaron", "Aaron", "Cindy", "Jane", "Jane"]
     assert(mostCommonName_n2(["Jane", "Aaron", "Jane", "Cindy", "Aaron"]) == {"Aaron", "Jane"}) 
     assert(mostCommonName_n2(["Cindy"]) == "Cindy") 
     assert(mostCommonName_n2(["Jane", "Aaron", "Cindy"]) == {"Aaron", "Cindy", "Jane"}) 
@@ -51,7 +109,9 @@ def testN2():
     
 def testNlogN():    
     print("Testing mostCommonName_nlogn()...", end="") 
-    assert(mostCommonName_nlogn(["Jane", "Aaron", "Cindy", "Aaron"]) == "Aaron") 
+    assert(mostCommonName_nlogn(["Jane", "Aaron", "Cindy", "Aaron"]) == "Aaron")
+    print("Testing")
+    print(mostCommonName_nlogn(["Jane", "Aaron", "Jane", "Cindy", "Aaron"]))
     assert(mostCommonName_nlogn(["Jane", "Aaron", "Jane", "Cindy", "Aaron"]) == {"Aaron", "Jane"}) 
     assert(mostCommonName_nlogn(["Cindy"]) == "Cindy") 
     assert(mostCommonName_nlogn(["Jane", "Aaron", "Cindy"]) == {"Aaron", "Cindy", "Jane"}) 
@@ -70,8 +130,8 @@ def testN():
 
 def testMostCommonName():
     testN2()
-#     testN()
-#     testNlogN()
+    testN()
+    testNlogN()
 
     print("Passed!")
     
