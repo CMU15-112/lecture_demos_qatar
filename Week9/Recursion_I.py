@@ -55,14 +55,38 @@ def maxValue(L):
     
     # Base Case
     if len(L) == 1:
-        return L[0]
-    
+        return L[0] 
     
     maxV = maxValue(L[1:])
     return max(L[0], maxV)
 
 assert maxValue([2,13,14,9])==14
 assert maxValue([]) == None
+
+
+'''
+Uses additional parameters to track max value
+Each call receives its own value of maxVal.
+- We are not modifying a shared integer.
+- We are not changing max across calls
+- We compute a new max and pass it forward
+'''
+def maxValueHelper(L, maxV):
+    if len(L) == 0:
+        return None
+
+    maxV = max(L[0], maxV)
+    if len(L)==1:
+        return maxV 
+    
+    return maxValueHelper(L[1:], maxV)
+
+def maxValue2(L):
+    return maxValueHelper(L, float('-inf'))
+    
+
+assert maxValue2([2,13,14,9])==14
+assert maxValue2([]) == None
 
 
 def largestConsPairsSum(L):
