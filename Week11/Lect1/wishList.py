@@ -2,7 +2,7 @@ class Cart(object):
     def __init__(self, itemsStr):
         itemsL = itemsStr.lower().split(",")
         self.items = set(itemsL)
-    
+        self.status = 'open'
     
     def itemCount(self):
         return len(self.items)
@@ -15,12 +15,21 @@ class Cart(object):
         
     def addItem(self, item):
         i = item.lower()
-        if i not in self.items:
+        if self.status == 'open' and i not in self.items:
             self.items.add(i)
             return True
         
         return False
+
+    def checkout(self):
+        self.status = 'closed'    
+
+class WishList(Cart):
+    def __repr__(self):
+        return f"Wish List: {self.itemCount()} item(s)"
     
+    def checkout(self):
+        return
 
 ################## TEST CASES ###########################
 # A (Shopping) Cart takes a string (not a list) of comma-separated items
@@ -43,27 +52,27 @@ assert(m3.itemCount() == 2)
 assert(m3.getItems() == {'milk', 'eggs'})
 assert((m3.getItems() == m1.getItems()) and (m3.getItems() != m2.getItems())) # Once more, but with a new item:
 assert(m3.addItem('water') == True) # True means the item was added!
-and so these all change:
+#and so these all change:
 assert(m3.itemCount() == 3)
 assert(m3.getItems() == {'milk', 'eggs','water'})
 # Lastly, all carts start out open
 assert(m1.status == 'open') # ...unless you pay them
-# m1.checkout()
-# assert(m1.status == 'closed')
-# m1.checkout()
-# assert(m1.status == 'closed') # still closed
-# # and you cannot add any more items
-# assert(m1.addItem('tomatoes') == False) # Return False if the cart has been checked out
-# assert(m1.status == 'closed') # still closed
+m1.checkout() # changing attribute
+assert(m1.status == 'closed')
+m1.checkout()
+assert(m1.status == 'closed') # still closed
+# and you cannot add any more items
+assert(m1.addItem('tomatoes') == False) # Return False if the cart has been checked out
+assert(m1.status == 'closed') # still closed
 
-# # A Wish List is a shopping cart that it always remains open
-# w1 = WishList("LEMON")
-# assert(str(w1) == "Wish List: 1 item(s)")
-# assert(w1.itemCount() == 1)
-# assert(w1.getItems() == {'lemon'})
-# assert(w1.addItem("Salt") == True)
-# assert(w1.getItems() == {'lemon', 'salt'})
-# assert(w1.status == 'open')
-# w1.checkout() # does nothing, the wish list stays open
-# assert(w1.status == 'open')
+# A Wish List is a shopping cart that it always remains open
+w1 = WishList("LEMON")
+assert(str(w1) == "Wish List: 1 item(s)")
+assert(w1.itemCount() == 1)
+assert(w1.getItems() == {'lemon'})
+assert(w1.addItem("Salt") == True)
+assert(w1.getItems() == {'lemon', 'salt'})
+assert(w1.status == 'open')
+w1.checkout() # does nothing, the wish list stays open
+assert(w1.status == 'open')
 print("PASSED !!")
