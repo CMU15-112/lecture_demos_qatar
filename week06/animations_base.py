@@ -5,7 +5,7 @@ def onAppStart(app):
     pass
 
 # This is called every time one key is pressed
-def onKeyPressed(app, key):
+def onKeyPress(app, key):
     pass
 
 # This is called every time a mouse button is pressed
